@@ -295,7 +295,7 @@ public class DefaultCoordinator extends AbstractTCInboundHandler implements Tran
         MDC.put(RootContext.MDC_KEY_XID, request.getXid());
         response.setBranchId(
                 core.branchRegister(request.getBranchType(), request.getResourceId(), rpcContext.getClientId(),
-                        request.getXid(), request.getApplicationData(), request.getLockKey()));
+                        request.getXid(), request.getApplicationData(), request.getLockKey(), request.getBranchId()));
     }
 
     @Override

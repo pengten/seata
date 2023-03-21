@@ -114,7 +114,7 @@ public class DefaultCoordinatorTest {
         GlobalSession globalSession = null;
         try {
             xid = core.begin(applicationId, txServiceGroup, txName, timeout);
-            Long branchId = core.branchRegister(BranchType.AT, resourceId, clientId, xid, applicationData, lockKeys_1);
+            Long branchId = core.branchRegister(BranchType.AT, resourceId, clientId, xid, applicationData, lockKeys_1, null);
             globalSession = SessionHolder.findGlobalSession(xid);
             result = core.branchCommit(globalSession, globalSession.getBranch(branchId));
         } catch (TransactionException e) {
@@ -145,7 +145,7 @@ public class DefaultCoordinatorTest {
     public void test_handleRetryRollbacking() throws TransactionException, InterruptedException {
 
         String xid = core.begin(applicationId, txServiceGroup, txName, 10);
-        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2);
+        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2, null);
 
         Assertions.assertNotNull(branchId);
 
@@ -162,7 +162,7 @@ public class DefaultCoordinatorTest {
     @DisabledOnJre(JRE.JAVA_17) // `ReflectionUtil.modifyStaticFinalField` does not supported java17
     public void test_handleRetryRollbackingTimeOut() throws TransactionException, InterruptedException, NoSuchFieldException, IllegalAccessException {
         String xid = core.begin(applicationId, txServiceGroup, txName, 10);
-        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2);
+        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2, null);
 
         GlobalSession globalSession = SessionHolder.findGlobalSession(xid);
         Assertions.assertNotNull(globalSession);
@@ -189,7 +189,7 @@ public class DefaultCoordinatorTest {
     public void test_handleRetryRollbackingTimeOut_unlock() throws TransactionException, InterruptedException,
         NoSuchFieldException, IllegalAccessException {
         String xid = core.begin(applicationId, txServiceGroup, txName, 10);
-        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2);
+        Long branchId = core.branchRegister(BranchType.AT, "abcd", clientId, xid, applicationData, lockKeys_2, null);
 
         GlobalSession globalSession = SessionHolder.findGlobalSession(xid);
         Assertions.assertNotNull(globalSession);
@@ -239,7 +239,7 @@ public class DefaultCoordinatorTest {
 
     static Stream<Arguments> xidAndBranchIdProviderForRollback() throws Exception {
         String xid = core.begin(applicationId, txServiceGroup, txName, timeout);
-        Long branchId = core.branchRegister(BranchType.AT, resourceId, clientId, xid, applicationData, lockKeys_2);
+        Long branchId = core.branchRegister(BranchType.AT, resourceId, clientId, xid, applicationData, lockKeys_2, null);
         return Stream.of(
             Arguments.of(xid, branchId)
         );

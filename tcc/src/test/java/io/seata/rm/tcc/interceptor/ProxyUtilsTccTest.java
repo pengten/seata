@@ -58,7 +58,7 @@ public class ProxyUtilsTccTest {
         ResourceManager resourceManager = new ResourceManager() {
 
             @Override
-            public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys) throws TransactionException {
+            public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys, Long branchId) throws TransactionException {
                 branchReference.set(resourceId);
                 return System.currentTimeMillis();
             }

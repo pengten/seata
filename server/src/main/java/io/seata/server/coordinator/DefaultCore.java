@@ -99,9 +99,9 @@ public class DefaultCore implements Core {
 
     @Override
     public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid,
-                               String applicationData, String lockKeys) throws TransactionException {
+                               String applicationData, String lockKeys, Long branchId) throws TransactionException {
         return getCore(branchType).branchRegister(branchType, resourceId, clientId, xid,
-            applicationData, lockKeys);
+            applicationData, lockKeys, branchId);
     }
 
     @Override

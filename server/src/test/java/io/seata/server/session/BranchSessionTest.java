@@ -18,7 +18,7 @@ package io.seata.server.session;
 import java.util.stream.Stream;
 
 import io.seata.core.model.BranchType;
-import io.seata.server.UUIDGenerator;
+import io.seata.common.UUIDGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;

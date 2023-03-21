@@ -51,11 +51,12 @@ public abstract class AbstractResourceManager implements ResourceManager {
      * @param clientId   the client id
      * @param xid        the xid
      * @param lockKeys   the lock keys
+     * @param branchId   the branchId
      * @return branchId
      * @throws TransactionException TransactionException
      */
     @Override
-    public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys) throws TransactionException {
+    public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys, Long branchId) throws TransactionException {
         try {
             BranchRegisterRequest request = new BranchRegisterRequest();
             request.setXid(xid);
@@ -63,6 +64,7 @@ public abstract class AbstractResourceManager implements ResourceManager {
             request.setResourceId(resourceId);
             request.setBranchType(branchType);
             request.setApplicationData(applicationData);
+            request.setBranchId(branchId);
 
             BranchRegisterResponse response = (BranchRegisterResponse) RmNettyRemotingClient.getInstance().sendSyncRequest(request);
             if (response.getResultCode() == ResultCode.Failed) {

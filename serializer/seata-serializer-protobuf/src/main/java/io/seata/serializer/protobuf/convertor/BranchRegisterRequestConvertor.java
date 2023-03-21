@@ -44,7 +44,7 @@ public class BranchRegisterRequestConvertor implements PbConvertor<BranchRegiste
             abstractTransactionRequestProto).setApplicationData(applicationData == null ? "" : applicationData)
             .setBranchType(BranchTypeProto.valueOf(branchRegisterRequest.getBranchType().name())).setLockKey(
                 lockKey == null ? "" : lockKey).setResourceId(resourceId == null ? "" : resourceId).setXid(
-                branchRegisterRequest.getXid()).build();
+                branchRegisterRequest.getXid()).setBranchId(branchRegisterRequest.getBranchId()).build();
         return result;
     }
 
@@ -56,6 +56,7 @@ public class BranchRegisterRequestConvertor implements PbConvertor<BranchRegiste
         branchRegisterRequest.setLockKey(branchRegisterRequestProto.getLockKey());
         branchRegisterRequest.setResourceId(branchRegisterRequestProto.getResourceId());
         branchRegisterRequest.setXid(branchRegisterRequestProto.getXid());
+        branchRegisterRequest.setBranchId(branchRegisterRequestProto.getBranchId());
         return branchRegisterRequest;
     }
 }

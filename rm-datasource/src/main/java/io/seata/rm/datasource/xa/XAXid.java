@@ -24,7 +24,27 @@ import javax.transaction.xa.Xid;
  */
 public interface XAXid extends Xid {
 
+    /**
+     * Gets the XID
+     * @return the Xid
+     */
     String getGlobalXid();
 
+    /**
+     * Gets the branchId
+     * @return the branchId
+     */
     long getBranchId();
+
+    /**
+     * Is the registration complete?
+     * @return the true if branch is registered
+     */
+    boolean getBranchRegistered();
+
+    /**
+     * Sets the branchRegistered
+     * @param branchRegistered the branchRegistered
+     */
+    void setBranchRegistered(boolean branchRegistered);
 }

@@ -168,7 +168,7 @@ public class ATModeSupportDataBaseDataTypeTest {
         DefaultResourceManager.mockResourceManager(BranchType.AT, new DataSourceManager() {
             @Override
             public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid,
-                String applicationData, String lockKeys) throws TransactionException {
+                String applicationData, String lockKeys, Long branchId) throws TransactionException {
                 return MOCK_BRANCH_ID;
             }
 

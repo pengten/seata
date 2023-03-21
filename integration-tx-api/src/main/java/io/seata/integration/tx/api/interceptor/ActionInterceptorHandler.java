@@ -198,7 +198,7 @@ public class ActionInterceptorHandler {
         try {
             //registry branch record
             Long branchId = DefaultResourceManager.get().branchRegister(businessActionParam.getBranchType(), actionName, null, xid,
-                    applicationContextStr, null);
+                    applicationContextStr, null, null);
             return String.valueOf(branchId);
         } catch (Throwable t) {
             String msg = String.format("%s branch Register error, xid: %s", businessActionParam.getBranchType(), xid);

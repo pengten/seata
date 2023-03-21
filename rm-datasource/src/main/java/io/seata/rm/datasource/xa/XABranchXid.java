@@ -37,6 +37,8 @@ public class XABranchXid implements XAXid {
 
     private byte[] branchQualifier;
 
+    private boolean branchRegistered;
+
     XABranchXid(String xid, long branchId) {
         this.xid = xid;
         this.branchId = branchId;
@@ -72,6 +74,16 @@ public class XABranchXid implements XAXid {
     @Override
     public byte[] getBranchQualifier() {
         return branchQualifier;
+    }
+
+    @Override
+    public boolean getBranchRegistered() {
+        return branchRegistered;
+    }
+
+    @Override
+    public void setBranchRegistered(boolean branchRegistered) {
+        this.branchRegistered = branchRegistered;
     }
 
     private byte[] string2byteArray(String string) {

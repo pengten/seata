@@ -27,8 +27,8 @@ import io.seata.core.context.RootContext;
 import io.seata.core.exception.TransactionException;
 import io.seata.core.model.BranchType;
 import io.seata.core.model.GlobalStatus;
+import io.seata.common.UUIDGenerator;
 import io.seata.metrics.IdConstants;
-import io.seata.server.UUIDGenerator;
 import io.seata.server.coordinator.DefaultCoordinator;
 import io.seata.server.metrics.MetricsPublisher;
 import io.seata.server.store.StoreConfig;
@@ -66,7 +66,12 @@ public class SessionHelper {
     }
 
     public static BranchSession newBranchByGlobal(GlobalSession globalSession, BranchType branchType, String resourceId, String lockKeys, String clientId) {
-        return newBranchByGlobal(globalSession, branchType, resourceId, null, lockKeys, clientId);
+        return newBranchByGlobal(globalSession, branchType, resourceId, null, lockKeys, clientId, null);
+    }
+
+    public static BranchSession newBranchByGlobal(GlobalSession globalSession, BranchType branchType, String resourceId,
+        String applicationData, String lockKeys, String clientId) {
+        return newBranchByGlobal(globalSession, branchType, resourceId, applicationData, lockKeys, clientId, null);
     }
 
     /**
@@ -80,12 +85,12 @@ public class SessionHelper {
      * @return the branch session
      */
     public static BranchSession newBranchByGlobal(GlobalSession globalSession, BranchType branchType, String resourceId,
-            String applicationData, String lockKeys, String clientId) {
+            String applicationData, String lockKeys, String clientId, Long branchId) {
         BranchSession branchSession = new BranchSession();
 
         branchSession.setXid(globalSession.getXid());
         branchSession.setTransactionId(globalSession.getTransactionId());
-        branchSession.setBranchId(UUIDGenerator.generateUUID());
+        branchSession.setBranchId(branchId == null ? UUIDGenerator.generateUUID() : branchId);
         branchSession.setBranchType(branchType);
         branchSession.setResourceId(resourceId);
         branchSession.setLockKey(lockKeys);

@@ -29,7 +29,7 @@ import io.seata.common.util.CollectionUtils;
 import io.seata.console.result.PageResult;
 import io.seata.core.exception.TransactionException;
 import io.seata.core.model.BranchType;
-import io.seata.server.UUIDGenerator;
+import io.seata.common.UUIDGenerator;
 import io.seata.server.console.param.GlobalLockParam;
 import io.seata.server.console.service.GlobalLockService;
 import io.seata.server.console.vo.GlobalLockVO;

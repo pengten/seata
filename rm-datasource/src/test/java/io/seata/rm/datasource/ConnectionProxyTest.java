@@ -73,7 +73,7 @@ public class ConnectionProxyTest {
         Mockito.when(dataSourceProxy.getDbType()).thenReturn(DB_TYPE);
         DefaultResourceManager rm = Mockito.mock(DefaultResourceManager.class);
 
-        Mockito.when(rm.branchRegister(BranchType.AT, dataSourceProxy.getResourceId(), null, TEST_XID, "{\"autoCommit\":false}", lockKey))
+        Mockito.when(rm.branchRegister(BranchType.AT, dataSourceProxy.getResourceId(), null, TEST_XID, "{\"autoCommit\":false}", lockKey, null))
                 .thenThrow(new TransactionException(TransactionExceptionCode.LockKeyConflict));
         DefaultResourceManager defaultResourceManager = DefaultResourceManager.get();
         Assertions.assertNotNull(defaultResourceManager);

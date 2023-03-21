@@ -25,6 +25,7 @@ import io.seata.core.context.RootContext;
 import io.seata.core.exception.TransactionException;
 import io.seata.core.model.BranchStatus;
 import io.seata.core.model.BranchType;
+import io.seata.common.UUIDGenerator;
 import io.seata.rm.DefaultResourceManager;
 import io.seata.rm.datasource.DataCompareUtils;
 import io.seata.rm.datasource.DataSourceManager;
@@ -32,7 +33,6 @@ import io.seata.rm.datasource.DataSourceProxy;
 import io.seata.rm.datasource.sql.struct.TableMeta;
 import io.seata.rm.datasource.sql.struct.TableMetaCacheFactory;
 import io.seata.rm.datasource.sql.struct.TableRecords;
-import io.seata.server.UUIDGenerator;
 import io.seata.sqlparser.util.JdbcConstants;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -138,7 +138,7 @@ public class MysqlUpdateJoinTest {
         // mock the RM of AT
         DefaultResourceManager.mockResourceManager(BranchType.AT, new DataSourceManager() {
             @Override
-            public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys) throws TransactionException {
+            public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String applicationData, String lockKeys, Long branchId) throws TransactionException {
                 return mockBranchId;
             }
 

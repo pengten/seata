@@ -28,6 +28,8 @@ public class BranchRegisterRequest extends AbstractTransactionRequestToTC  {
 
     private String xid;
 
+    private Long branchId;
+
     private BranchType branchType = BranchType.AT;
 
     private String resourceId;
@@ -52,6 +54,22 @@ public class BranchRegisterRequest extends AbstractTransactionRequestToTC  {
      */
     public void setXid(String xid) {
         this.xid = xid;
+    }
+
+    /**
+     * Gets branchId, nullable
+     * @return the branchId
+     */
+    public Long getBranchId() {
+        return branchId;
+    }
+
+    /**
+     * Sets branchId
+     * @param branchId the branchId
+     */
+    public void setBranchId(Long branchId) {
+        this.branchId = branchId;
     }
 
     /**
